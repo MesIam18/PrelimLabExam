@@ -1,50 +1,59 @@
 import { students } from './students.js';
 import { 
-  searchStudents, 
-  filterStudentsByBlock, 
-  filterStudentsByStatus 
+    searchStudents, 
+    filterStudentsByBlock, 
+    filterStudentsByStatus 
 } from './gradeUtils.js';
 import { 
-  displayStudents, 
-  displaySummary 
+    displayStudents, 
+    displaySummary, 
+    displayMessage 
 } from './display.js';
 
-const searchInput = document.getElementById("searchInput");
-const blockFilter = document.getElementById("blockFilter");
-const statusFilter = document.getElementById("statusFilter");
-const applyBtn = document.getElementById("applyBtn");
-const resetBtn = document.getElementById("resetBtn");
+// DOM Element References using required IDs[cite: 1]
+const searchInput = document.getElementById('searchInput');
+const blockFilter = document.getElementById('blockFilter');
+const statusFilter = document.getElementById('statusFilter');
+const applyBtn = document.getElementById('applyBtn');
+const resetBtn = document.getElementById('resetBtn');
 
-function updateDashboard() {
-  const query = searchInput.value;
-  const selectedBlock = blockFilter.value;
-  const selectedStatus = statusFilter.value;
+// Primary data pipeline handling combined processing[cite: 1]
+function processAndRender() {
+    const query = searchInput.value;
+    const selectedBlock = blockFilter.value;
+    const selectedStatus = statusFilter.value;
 
-  let filtered = searchStudents(students, query);
-  filtered = filterStudentsByBlock(filtered, selectedBlock);
-  filtered = filterStudentsByStatus(filtered, selectedStatus);
+    let filtered = searchStudents(students, query);
+    filtered = filterStudentsByBlock(filtered, selectedBlock);
+    filtered = filterStudentsByStatus(filtered, selectedStatus);
 
-  displayStudents(filtered);
-  displaySummary(filtered);
+    displayStudents(filtered);
+    displaySummary(filtered);
 }
 
+// Reset application state[cite: 1]
 function handleReset() {
-  searchInput.value = "";
-  blockFilter.value = "All";
-  statusFilter.value = "All";
-
-  displayStudents(students);
-  displaySummary(students);
+    searchInput.value = '';
+    blockFilter.value = 'All';
+    statusFilter.value = 'All';
+    displayMessage('');
+    
+    displayStudents(students);
+    displaySummary(students);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  displayStudents(students);
-  displaySummary(students);
+// Register Event Listeners without inline attributes[cite: 1]
+function init() {
+    applyBtn.addEventListener('click', processAndRender);
+    resetBtn.addEventListener('click', handleReset);
+    searchInput.addEventListener('input', processAndRender);
+    blockFilter.addEventListener('change', processAndRender);
+    statusFilter.addEventListener('change', processAndRender);
 
-  applyBtn.addEventListener("click", updateDashboard);
-  resetBtn.addEventListener("click", handleReset);
+    // Initial render on load[cite: 1]
+    displayStudents(students);
+    displaySummary(students);
+}
 
-  searchInput.addEventListener("input", updateDashboard);
-  blockFilter.addEventListener("change", updateDashboard);
-  statusFilter.addEventListener("change", updateDashboard);
-});
+// Run application
+init();
