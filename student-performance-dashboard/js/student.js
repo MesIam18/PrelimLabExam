@@ -1,4 +1,4 @@
-// Exact dataset export with property names and values unchanged
+// Export constant array with exact schema and initial dataset[cite: 1]
 export const students = [
   { id: 1, name: "Andrea Cruz", block: "31-ITE-01", quiz: 88, lab: 92, exam: 85 },
   { id: 2, name: "Brian Santos", block: "31-ITE-01", quiz: 74, lab: 80, exam: 77 },

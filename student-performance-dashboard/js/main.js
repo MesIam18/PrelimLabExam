@@ -10,50 +10,51 @@ import {
     displayMessage 
 } from './display.js';
 
-// DOM Element References using required IDs[cite: 1]
+// Get required control elements by exact ID[cite: 1]
 const searchInput = document.getElementById('searchInput');
 const blockFilter = document.getElementById('blockFilter');
 const statusFilter = document.getElementById('statusFilter');
 const applyBtn = document.getElementById('applyBtn');
 const resetBtn = document.getElementById('resetBtn');
 
-// Primary data pipeline handling combined processing[cite: 1]
+// Primary function to handle combined search and filter processing[cite: 1]
 function processAndRender() {
     const query = searchInput.value;
     const selectedBlock = blockFilter.value;
     const selectedStatus = statusFilter.value;
 
-    let filtered = searchStudents(students, query);
-    filtered = filterStudentsByBlock(filtered, selectedBlock);
-    filtered = filterStudentsByStatus(filtered, selectedStatus);
+    let result = searchStudents(students, query);
+    result = filterStudentsByBlock(result, selectedBlock);
+    result = filterStudentsByStatus(result, selectedStatus);
 
-    displayStudents(filtered);
-    displaySummary(filtered);
+    displayStudents(result);
+    displaySummary(result);
 }
 
-// Reset application state[cite: 1]
-function handleReset() {
+// Reset handler restoring default state[cite: 1]
+function resetDashboard() {
     searchInput.value = '';
     blockFilter.value = 'All';
     statusFilter.value = 'All';
     displayMessage('');
-    
+
     displayStudents(students);
     displaySummary(students);
 }
 
-// Register Event Listeners without inline attributes[cite: 1]
+// Event Listeners registration using addEventListener()[cite: 1]
 function init() {
     applyBtn.addEventListener('click', processAndRender);
-    resetBtn.addEventListener('click', handleReset);
+    resetBtn.addEventListener('click', resetDashboard);
+    
+    // Live update capabilities[cite: 1]
     searchInput.addEventListener('input', processAndRender);
     blockFilter.addEventListener('change', processAndRender);
     statusFilter.addEventListener('change', processAndRender);
 
-    // Initial render on load[cite: 1]
+    // Initial Dashboard Display on Page Load[cite: 1]
     displayStudents(students);
     displaySummary(students);
 }
 
-// Run application
 init();

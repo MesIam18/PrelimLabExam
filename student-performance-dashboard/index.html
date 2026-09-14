@@ -10,19 +10,19 @@
     <div class="container">
         <h1>Student Performance Dashboard</h1>
 
-        <!-- Controls Section -->
+        <!-- Required Controls -->
         <div class="controls">
             <input type="text" id="searchInput" placeholder="Enter student name">
             
             <select id="blockFilter">
-                <option value="All">All Blocks</option>
+                <option value="All">All</option>
                 <option value="31-ITE-01">31-ITE-01</option>
                 <option value="31-ITE-02">31-ITE-02</option>
                 <option value="31-ITE-03">31-ITE-03</option>
             </select>
 
             <select id="statusFilter">
-                <option value="All">All Statuses</option>
+                <option value="All">All</option>
                 <option value="Excellent">Excellent</option>
                 <option value="Passed">Passed</option>
                 <option value="Needs Improvement">Needs Improvement</option>
@@ -33,22 +33,22 @@
             <button id="resetBtn">Reset</button>
         </div>
 
-        <!-- Class Summary Section -->
+        <!-- Required Summary Elements -->
         <div class="summary-board">
-            <div>Total Displayed: <span id="displayedCount">0</span></div>
+            <div>Displayed Students: <span id="displayedCount">0</span></div>
             <div>Class Average: <span id="classAverage">0</span></div>
             <div>Passing Count: <span id="passingCount">0</span></div>
             <div>Top Student: <span id="topStudent">None</span></div>
         </div>
 
-        <!-- Feedback Message Area -->
+        <!-- Required Message Area -->
         <div id="messageArea"></div>
 
-        <!-- Student Records Container -->
+        <!-- Required Student List Container -->
         <div id="studentList"></div>
     </div>
 
-    <!-- Script Configuration -->
+    <!-- Required Script Hook -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
